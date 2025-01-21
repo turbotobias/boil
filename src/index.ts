@@ -1,10 +1,13 @@
 import { Hono } from 'hono'
 import { html } from 'hono/html'
-import type { Env } from '../worker-configuration'
 
-const app = new Hono<{ Bindings: Env }>()
+const app = new Hono<{ Bindings: CloudflareBindings }>()
 
-app.get('/', (c) => {
+app.get('/',(c) => {
+  return c.html(View())
+})
+
+app.get('/page',(c) => {
   return c.html(View())
 })
 
@@ -17,9 +20,5 @@ const View = () => {
     </html>
   `
 }
-
-app.get('/page', (c) => {
-  return c.html(View())
-})
 
 export default app

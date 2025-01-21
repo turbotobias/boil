@@ -1,3 +1,8 @@
 {
-  "recommendations": ["dbaeumer.vscode-eslint", "biomejs.biome", "oven.bun-vscode"]
+  "recommendations": [
+    "biomejs.biome",
+    "oven.bun-vscode",
+    "adrianwilczynski.toggle-hidden",
+    "amodio.toggle-excluded-files"
+  ]
 }

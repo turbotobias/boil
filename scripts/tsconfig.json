@@ -1,5 +1,5 @@
 {
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["*.ts", "**/*.ts", "**/*.tsx"],
   "compilerOptions": {
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -15,11 +15,6 @@
     "module": "preserve",
     "noEmit": true,
     "lib": ["es2022"],
-    "types": ["@cloudflare/workers-types/2023-07-01"],
-    "paths": {
-      "#wrangler-types": ["./wrangler-configuration.d.ts"]
-    },
-    "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "types": ["@types/bun"]
   }
 }

@@ -1,14 +1,10 @@
-/**
- * For more details on how to configure Wrangler, refer to:
- * @see https://developers.cloudflare.com/workers/wrangler/configuration/
- */
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "aitentic",
-  "compatibility_date": "2025-01-09",
+  "compatibility_date": "2025-01-21",
   "compatibility_flags": ["nodejs_compat"],
+  "main": "src/index.ts",
   "pages_build_output_dir": "./dist",
-
   /** https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement*/
   "placement": { "mode": "smart" },
   /** https://developers.cloudflare.com/workers-ai/get-started/workers-wrangler/#2-connect-your-worker-to-workers-ai  */
