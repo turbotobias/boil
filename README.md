@@ -1,13 +1,62 @@
-A cloudflare-first backend for end-to-end speed, reliability, and developer velocity
+> attempt at a cloudflare-first backend for end-to-end speed, reliability, and developer velocity
 
-- use AI to write code
-- if AI fails to write properly, update instructions until AI writes properly
-- (almost) always use AI to write code
-- 100% test coverage required
-- to help AI write better code, instruct it by templates, templates, templates
+> ___ please write above 👆, below is auto-generated from `./list-rules-ai.yaml` ___
 
-> ___ please write above 👆 not below (generated from `./list-rules-ai.yaml`) 👇 ___
+## (generated)
 
+features and capabilities:
+  - A Cloudflare-first backend for speed, reliability, and developer velocity
+  - Distributed realtime from PostgreSQL to backend workflows to frontends
+  - AI everything
+  - Automate everything
+  - Test everything
+
+technology stack:
+  - postgresql (Main database hosted on Docker at fly.io)
+  - zero sync (Sync engine between Postgres, Cloudflare Durable Objects, and browsers; docs: https://zero.rocicorp.dev/docs/zero-schema)
+  - cloudflare services: workers (microservices)
+  - cloudflare services: workers_ai (function calling)
+  - cloudflare services: ai_gateway (maybe?)
+  - cloudflare services: vectorize (embeddings)
+  - cloudflare services: r2 (unstructured data storage)
+  - cloudflare services: images (resize, optimize, transform images from R2)
+  - cloudflare services: queues (async tasks/workflows)
+  - cloudflare services: hyperdrive (Postgres connection pool)
+  - typescript
+  - effect (All custom code/business logic: error handling, piping/workflows, tracing/logging)
+  - bun (Package manager and testing framework)
+
+code quality guidelines:
+  - Rely on existing code
+  - Only write new code when absolutely necessary
+  - Write testable code
+  - Reliability and error-free code is paramount
+  - Efficiency and performance are secondary to reliability
+  - Write code that is clear for both AI and humans
+  - Maintain 100% type safety
+  - Fix type errors until there are none
+  - Type casting only allowed in justified edge cases
+  - Stick to package.json dependencies
+  - Only deviate from dependencies when there's significant benefit
+  - Ask for clarification before proceeding with unclear tasks
+
+code style rules:
+  - Naming conventions: variables => snake_case, properties => snake_case, functions => snake_case, files => kebab-case
+  - Custom types => PascalCase prefixed with "T" (e.g. TImage)
+  - External dependencies => default casing
+  - Comments: ai_generated => prefix with (ai)
+
+directory specific rules:
+  - src/** => use Bun as test runner, write 100% Cloudflare Workers compatible code, no Bun-specific code
+  - script/** => use Bun exclusively for tests, write 100% Bun code, strictly no Node.js code
+
+core principles:
+  - Begin with foundational observations
+  - Keep exploring until a solution emerges naturally from the evidence
+  - Continue reasoning indefinitely when uncertain
+  - Question every assumption and inference
+  - Acknowledge and explore dead ends
+  - Frequently revise and backtrack as needed
 # (generated)
 
 

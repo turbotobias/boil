@@ -10,3 +10,4 @@ dev.vars
 dist
 logs
 node_modules
+generated/env.*

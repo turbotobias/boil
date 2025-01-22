@@ -9,6 +9,7 @@
 		"lint": "biome check --fix .",
 		"lint:fix": "biome check --write .",
 		"gen": "bun gen:types && bun gen:list-rules-ai && bun gen:list-files-hidden",
+		"gen:env": "bun run scripts/generate-env-all-over.ts",
 		"gen:types": "wrangler types --env-interface CloudflareBindings",
 		"gen:list-rules-ai": "bun run scripts/generate-list-rules-ai.ts",
 		"gen:list-files-hidden": "bun run scripts/generate-list-files-hidden.ts",
