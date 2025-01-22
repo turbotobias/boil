@@ -1,20 +1,20 @@
-// (ai) Tests for generate-ai-rules script
-import { test,expect,beforeEach,afterEach } from "bun:test";
+// (ai) tests for generate-list-rules-ai"); script
+import { test, expect } from 'bun:test'
 
-const rootDir = `${import.meta.dir}/..`;
+test('generate-list-rules-ai', async () => {
+  import('./generate-list-rules-ai')
+  const root_dir = `${import.meta.dir}/..`
 
-test("generate-ai-rules copies content to all target files",async () => {
-    // (ai) Run the script
-    await import("./generate-ai-rules");
+  // (ai) get source content
+  const source_content = await Bun.file(`${root_dir}/.list-rules-ai`).text()
 
-    // (ai) Get source content
-    const sourceContent = await Bun.file(`${rootDir}/.list-rules-ai`).text();
+  // (ai) verify each target file matches source exactly
+  const target_files = ['.cursorrules', '.windsurfrules', 'readme.md']
 
-    // (ai) Verify each target file matches source exactly
-    const targetFiles = [".cursorrules",".windsurfrules","readme.md"];
-    for (const fileName of targetFiles) {
-        const filePath = `${rootDir}/${fileName}`;
-        const fileContent = await Bun.file(filePath).text();
-        expect(fileContent).toBe(sourceContent);
-    }
-});
+  for (const file_name of target_files) {
+    const file_path = `${root_dir}/${file_name}`
+    const file_content = await Bun.file(file_path).text()
+
+    expect(file_content).toBe(source_content)
+  }
+})

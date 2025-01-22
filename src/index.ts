@@ -4,14 +4,14 @@ import { html } from 'hono/html'
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
 app.get('/',(c) => {
-  return c.html(View())
+  return c.html(view())
 })
 
 app.get('/page',(c) => {
-  return c.html(View())
+  return c.html(view())
 })
 
-const View = () => {
+const view = () => {
   return html`
     <html>
       <body>

@@ -11,6 +11,7 @@
     "*.tsx": "typescriptreact"
   },
   "search.useIgnoreFiles": false,
+  "__PLEASE_DO_NOT_CHANGE_GENERATED_SETTINGS_BELOW__CHANGE_SCRIPT_LIST_FILES_HIDDEN_INSTEAD__👇": true,
   "files.exclude": {
     ".output": true,
     "**/.output": true,
@@ -104,7 +105,10 @@
     "**/env.d.ts/**": true,
     ".windsurfrules": true,
     "**/.windsurfrules": true,
-    "**/.windsurfrules/**": true
+    "**/.windsurfrules/**": true,
+    "vitest.config.ts": true,
+    "**/vitest.config.ts": true,
+    "**/vitest.config.ts/**": true
   },
   "search.exclude": {
     "!.env.example": true,
@@ -181,7 +185,10 @@
     "**/env.d.ts/**": true,
     ".windsurfrules": true,
     "**/.windsurfrules": true,
-    "**/.windsurfrules/**": true
+    "**/.windsurfrules/**": true,
+    "vitest.config.ts": true,
+    "**/vitest.config.ts": true,
+    "**/vitest.config.ts/**": true
   },
   "files.watcherExclude": {
     "!.env.example": true,
@@ -258,6 +265,9 @@
     "**/env.d.ts/**": true,
     ".windsurfrules": true,
     "**/.windsurfrules": true,
-    "**/.windsurfrules/**": true
+    "**/.windsurfrules/**": true,
+    "vitest.config.ts": true,
+    "**/vitest.config.ts": true,
+    "**/vitest.config.ts/**": true
   }
 }

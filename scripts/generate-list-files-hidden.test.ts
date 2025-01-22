@@ -1,102 +1,101 @@
-import { test,expect } from 'bun:test'
-import updateSettings from './generate-ignorelist-for-vscode-explorer'
+import { describe, test, expect, beforeEach, afterEach } from 'bun:test'
+import { mkdir, rm } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 
-// (ai) Setup test environment
-async function setupTestEnv(baseDir: string) {
-  try {
-    // (ai) Create test directory structure
-    await Bun.write(`${baseDir}/.vscode/settings.json`,JSON.stringify({
-      'search.exclude': { 'existing': true },
-      'files.exclude': { 'existing': true },
-      'files.watcherExclude': { 'existing': true }
-    },null,2))
+// (ai) test setup variables
+const test_dir = `${import.meta.dir}/__test_hidden_files__`
+const vscode_dir = `${test_dir}/.vscode`
 
-    // (ai) Create .gitignore with test patterns
-    await Bun.write(`${baseDir}/.gitignore`,`
-# (ai) Test comment
-node_modules
-.env
-dist/
-*.log`.trim())
+// (ai) helper to create test files
+const create_test_files = async () => {
+  // (ai) create directories
+  await mkdir(test_dir, { recursive: true })
+  await mkdir(vscode_dir, { recursive: true })
+  // (ai) create mock settings.json
+  const settings = {
+    'search.exclude': { existing: true },
+    'files.exclude': { existing: true },
+    'files.watcherExclude': { existing: true },
+  }
+  await Bun.write(`${vscode_dir}/settings.json`, JSON.stringify(settings))
 
-    return true
-  } catch (error) {
-    console.error('(ai) Setup failed:',error)
-    return false
+  // (ai) create mock .gitignore
+  await Bun.write(`${test_dir}/.gitignore`, 'node_modules\n.env\n#comment\n\ntest/')
+
+  // (ai) create mock .list-files-hidden
+  await Bun.write(`${test_dir}/.list-files-hidden`, '.DS_Store\n.env.local')
+}
+
+// (ai) helper to cleanup test files
+const cleanup_test_files = async () => {
+  if (existsSync(test_dir)) {
+    await rm(test_dir, { recursive: true, force: true })
   }
 }
 
-// (ai) Cleanup test environment
-async function cleanupTestEnv(baseDir: string) {
-  try {
-    await Bun.spawn(['rm','-rf',baseDir])
-    return true
-  } catch (error) {
-    console.error('(ai) Cleanup failed:',error)
-    return false
-  }
-}
+describe('generate-list-files-hidden', () => {
+  beforeEach(async () => {
+    await create_test_files()
+  })
 
-test('updateSettings updates VSCode settings with gitignore patterns',async () => {
-  const testDir = `./test-temp`
+  afterEach(async () => {
+    await cleanup_test_files()
+  })
 
-  // (ai) Setup and verify
-  expect(await setupTestEnv(testDir)).toBe(true)
+  test('should generate correct patterns from input files', async () => {
+    // (ai) run the script with test directory
+    process.env.TEST_ROOT_DIR = test_dir
+    await import('./generate-list-files-hidden')
 
-  // (ai) Run the update
-  await updateSettings(testDir)
+    // (ai) read generated settings
+    const settings = JSON.parse(await Bun.file(`${vscode_dir}/settings.json`).text())
 
-  // (ai) Verify the results
-  const updatedSettings = JSON.parse(
-    await Bun.file(`${testDir}/.vscode/settings.json`).text()
-  )
+    // (ai) verify patterns are correctly generated
+    const expected_patterns = {
+      existing: true,
+      node_modules: true,
+      '**/node_modules': true,
+      '**/node_modules/**': true,
+      '.env': true,
+      '**/.env': true,
+      '**/.env/**': true,
+      'test/': true,
+      '**/test/': true,
+      '**/test/**': true,
+      '.DS_Store': true,
+      '**/.DS_Store': true,
+      '**/.DS_Store/**': true,
+      '.env.local': true,
+      '**/.env.local': true,
+      '**/.env.local/**': true,
+    }
 
-  const expectedPatterns = {
-    'existing': true,
-    'node_modules': true,
-    '**/node_modules': true,
-    '**/node_modules/**': true,
-    '.env': true,
-    '**/.env': true,
-    '**/.env/**': true,
-    'dist/': true,
-    '**/dist/': true,
-    '**/dist//**': true,
-    '*.log': true,
-    '**/*.log': true,
-    '**/*.log/**': true
-  }
+    expect(settings['search.exclude']).toEqual(expected_patterns)
+    expect(settings['files.exclude']).toEqual(expected_patterns)
+    expect(settings['files.watcherExclude']).toEqual(expected_patterns)
 
-  expect(updatedSettings['search.exclude']).toEqual(expectedPatterns)
-  expect(updatedSettings['files.exclude']).toEqual(expectedPatterns)
-  expect(updatedSettings['files.watcherExclude']).toEqual(expectedPatterns)
+    // (ai) verify warning comment is present
+    expect(
+      settings['__PLEASE_DO_NOT_CHANGE_GENERATED_SETTINGS_BELOW__CHANGE_SCRIPT_LIST_FILES_HIDDEN_INSTEAD__👇']
+    ).toBe(true)
+  })
 
-  // (ai) Cleanup
-  expect(await cleanupTestEnv(testDir)).toBe(true)
-})
+  test('should handle empty input files', async () => {
+    // (ai) create empty input files
+    await Bun.write(`${test_dir}/.gitignore`, '')
+    await Bun.write(`${test_dir}/.list-files-hidden`, '')
 
-test('updateSettings handles empty .gitignore',async () => {
-  const testDir = `${process.cwd()}/test-temp-empty`
+    // (ai) run the script
+    process.env.TEST_ROOT_DIR = test_dir
+    await import('./generate-list-files-hidden')
 
-  // (ai) Setup and verify
-  expect(await setupTestEnv(testDir)).toBe(true)
+    // (ai) read generated settings
+    const settings = JSON.parse(await Bun.file(`${vscode_dir}/settings.json`).text())
 
-  // (ai) Override with empty .gitignore
-  await Bun.write(`${testDir}/.gitignore`,'')
-
-  // (ai) Run the update
-  await updateSettings(testDir)
-
-  // (ai) Verify the results
-  const updatedSettings = JSON.parse(
-    await Bun.file(`${testDir}/.vscode/settings.json`).text()
-  )
-
-  const expectedPatterns = { 'existing': true }
-  expect(updatedSettings['search.exclude']).toEqual(expectedPatterns)
-  expect(updatedSettings['files.exclude']).toEqual(expectedPatterns)
-  expect(updatedSettings['files.watcherExclude']).toEqual(expectedPatterns)
-
-  // (ai) Cleanup
-  expect(await cleanupTestEnv(testDir)).toBe(true)
+    // (ai) verify only existing patterns remain
+    const expected_patterns = { existing: true }
+    expect(settings['search.exclude']).toEqual(expected_patterns)
+    expect(settings['files.exclude']).toEqual(expected_patterns)
+    expect(settings['files.watcherExclude']).toEqual(expected_patterns)
+  })
 })

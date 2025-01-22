@@ -1,17 +1,18 @@
-// (ai) Get the root directory (one level up from scripts)
-const rootDir = `${import.meta.dir}/..`;
+// (ai) get the root directory (one level up from scripts)
+const root_dir = `${import.meta.dir}/..`
 
-// (ai) Read the source file
-const rulesFile = Bun.file(`${rootDir}/.list-rules-ai`);
-const rulesContent = await rulesFile.text();
+// (ai) read the source file
+const rules_file = Bun.file(`${root_dir}/.list-rules-ai`)
+const rules_content = await rules_file.text()
 
-// (ai) Write to target files
-const targetFiles = [".cursorrules",".windsurfrules","readme.md"];
+// (ai) write to target files
+const target_files = ['.cursorrules', '.windsurfrules', 'readme.md']
 
-for (const fileName of targetFiles) {
-    const filePath = `${rootDir}/${fileName}`;
-    await Bun.write(filePath,rulesContent);
-    console.log(`(ai) Copied rules to ${fileName} - rules: ${rulesContent}`);
+for (const file_name of target_files) {
+  const file_path = `${root_dir}/${file_name}`
+  await Bun.write(file_path, rules_content)
+  const rules_count = rules_content.split('\n').length
+  console.log(`(ai) copied ${rules_count} rules to ${file_name}`)
 }
 
-console.log("(ai) Rules copying completed successfully");
+console.log('✔️ ai rules generated successfully')
