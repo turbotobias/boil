@@ -14,6 +14,7 @@
 		"gen:list-files-hidden": "bun run scripts/generate-list-files-hidden.ts"
 	},
 	"dependencies": {
+		"defu": "^6.1.4",
 		"hono": "^4.6.17",
 		"nanoid": "^5.0.9"
 	},

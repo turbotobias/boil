@@ -5,7 +5,7 @@
 .windsurfrules
 .cursorrules
 bun.lockb
-readme.md
 worker-configuration.d.ts
-biome.json
 env.d.ts
+biome.json
+.gitignore
