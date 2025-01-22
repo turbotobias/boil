@@ -9,3 +9,6 @@ worker-configuration.d.ts
 env.d.ts
 biome.json
 .gitignore
+.gitattributes
+generated
+.vscode

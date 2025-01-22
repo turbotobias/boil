@@ -1,6 +1,6 @@
-> attempt at a cloudflare-first backend for end-to-end speed, reliability, and developer velocity
+Attempt at a cloudflare-first backend for end-to-end speed, reliability, and developer velocity
 
-> ___ please write above 👆, below is auto-generated from `./list-rules-ai.yaml` ___
+> ___ please write above 👆, below is auto-generated from `./list-rules-ai.yaml` 👇 ___
 
 ## (generated)
 
