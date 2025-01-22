@@ -7,7 +7,7 @@ export const generate_list_files_hidden = async () => {
   // (ai) read the source file
   const settings = JSON.parse(await Bun.file(`${root_dir}/.vscode/settings.json`).text())
   const gitignore = await Bun.file(`${root_dir}/.gitignore`).text()
-  const hidden_list = await Bun.file(`${root_dir}/list-files-hidden.md`).text()
+  const hidden_list = await Bun.file(`${root_dir}/list-files-hidden.yaml`).text()
   Bun.stdout.write(`(ai) found ${hidden_list.split('\n').length} hiddenlist patterns\n, ${hidden_list}`)
 
   // (ai) process gitignore lines

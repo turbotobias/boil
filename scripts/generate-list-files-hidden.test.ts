@@ -22,8 +22,8 @@ const create_test_files = async () => {
   // (ai) create mock .gitignore
   await Bun.write(`${test_dir}/.gitignore`, 'node_modules\n.env\n#comment\n\ntest/')
 
-  // (ai) create mock list-files-hidden.md
-  await Bun.write(`${test_dir}/list-files-hidden.md`, '.DS_Store\n.env.local')
+  // (ai) create mock list-files-hidden.yaml
+  await Bun.write(`${test_dir}/list-files-hidden.yaml`, '.DS_Store\n.env.local')
 }
 
 // (ai) helper to cleanup test files
@@ -83,7 +83,7 @@ describe('generate-list-files-hidden', () => {
   test('should handle empty input files', async () => {
     // (ai) create empty input files
     await Bun.write(`${test_dir}/.gitignore`, '')
-    await Bun.write(`${test_dir}/list-files-hidden.md`, '')
+    await Bun.write(`${test_dir}/list-files-hidden.yaml`, '')
 
     // (ai) run the script
     process.env.TEST_ROOT_DIR = test_dir

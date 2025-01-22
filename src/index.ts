@@ -3,11 +3,11 @@ import { html } from 'hono/html'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>()
 
-app.get('/',(c) => {
+app.get('/', (c) => {
   return c.html(view())
 })
 
-app.get('/page',(c) => {
+app.get('/page', (c) => {
   return c.html(view())
 })
 

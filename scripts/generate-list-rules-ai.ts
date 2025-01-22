@@ -2,7 +2,7 @@
 const root_dir = `${import.meta.dir}/..`
 
 // (ai) read the source file
-const rules_file = Bun.file(`${root_dir}/list-rules-ai.md`)
+const rules_file = Bun.file(`${root_dir}/list-rules-ai.yaml`)
 const rules_content = await rules_file.text()
 
 // (ai) write to target files
@@ -18,7 +18,8 @@ for (const file_name of target_files) {
 // (ai) replace the content in readme.md from the # (generated) position
 const readme_file = Bun.file(`${root_dir}/readme.md`)
 const readme_content = await readme_file.text()
-const readme_content_updated = readme_content.replace('# (generated)', `# (generated)\n\n${rules_content}`)
-await Bun.write(`${root_dir}/readme.md`, readme_content_updated)
+const readme_content_without_generated = readme_content.split('\n# (generated)')[0]
+const readme_content_with_generated = `${readme_content_without_generated}\n# (generated)\n\n${rules_content}`
+await Bun.write(`${root_dir}/readme.md`, readme_content_with_generated)
 
 console.log('✔️ ai rules generated successfully')

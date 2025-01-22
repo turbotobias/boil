@@ -6,7 +6,7 @@ test('generate-list-rules-ai', async () => {
   const root_dir = `${import.meta.dir}/..`
 
   // (ai) get source content
-  const source_content = await Bun.file(`${root_dir}/list-rules-ai.md`).text()
+  const source_content = await Bun.file(`${root_dir}/list-rules-ai.yaml`).text()
 
   // (ai) verify each target file matches source exactly
   const target_files = ['.cursorrules', '.windsurfrules', 'readme.md']
