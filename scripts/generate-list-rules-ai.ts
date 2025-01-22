@@ -22,4 +22,4 @@ const readme_content_without_generated = readme_content.split('\n# (generated)')
 const readme_content_with_generated = `${readme_content_without_generated}\n# (generated)\n\n${rules_content}`
 await Bun.write(`${root_dir}/readme.md`, readme_content_with_generated)
 
-console.log('✔️ ai rules generated successfully')
+console.log('\n✔️ ai rules generated successfully\n')

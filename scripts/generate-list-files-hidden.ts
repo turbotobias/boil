@@ -1,40 +1,28 @@
-import { defu } from 'defu'
+// (ai) get the root directory (one level up from scripts)
+const root_dir = process.env.TEST_ROOT_DIR || `${import.meta.dir}/..`
 
-export const generate_list_files_hidden = async () => {
-  // (ai) get the root directory (one level up from scripts)
-  const root_dir = process.env.TEST_ROOT_DIR || `${import.meta.dir}/..`
+// (ai) read the source file
+const settings = JSON.parse(await Bun.file(`${root_dir}/.vscode/settings.json`).text())
+const gitignore = await Bun.file(`${root_dir}/.gitignore`).text()
+const hidden_list = await Bun.file(`${root_dir}/list-files-hidden.yaml`).text()
+console.log('hidden_list', hidden_list)
 
-  // (ai) read the source file
-  const settings = JSON.parse(await Bun.file(`${root_dir}/.vscode/settings.json`).text())
-  const gitignore = await Bun.file(`${root_dir}/.gitignore`).text()
-  const hidden_list = await Bun.file(`${root_dir}/list-files-hidden.yaml`).text()
-  Bun.stdout.write(`(ai) found ${hidden_list.split('\n').length} hiddenlist patterns\n, ${hidden_list}`)
+// (ai) process gitignore lines
+const patterns = [hidden_list, gitignore]
+  .flatMap((content) => content.split('\n'))
+  .map((line) => line.trim())
+  .filter((line) => line && !line.startsWith('#'))
+  .map((pattern) => ({ [`**/${pattern}`]: true }))
+  .reduce((acc, curr) => Object.assign(acc, curr), {})
 
-  // (ai) process gitignore lines
-  const patterns = [hidden_list, gitignore]
-    .flatMap((content) => content.split('\n'))
-    .map((line) => line.trim())
-    .filter((line) => {
-      const truth = line && !line.startsWith('#')
-      if (truth) {
-        console.log(line)
-      }
-      return truth
-    })
-    .map((pattern) => ({ [`**/${pattern}`]: true }))
-    .reduce((acc, curr) => Object.assign(acc, curr), {})
+// (ai) update vscode settings
+settings['__PLEASE_DO_NOT_CHANGE_GENERATED_SETTINGS_BELOW__CHANGE_SCRIPT_LIST_FILES_HIDDEN_INSTEAD__👇'] =
+  true
+settings['search.exclude'] = patterns
+settings['files.exclude'] = patterns
+settings['files.watcherExclude'] = patterns
 
-  // (ai) update vscode settings
-  settings['__PLEASE_DO_NOT_CHANGE_GENERATED_SETTINGS_BELOW__CHANGE_SCRIPT_LIST_FILES_HIDDEN_INSTEAD__👇'] =
-    true
-  settings['search.exclude'] = patterns
-  settings['files.exclude'] = patterns
-  settings['files.watcherExclude'] = patterns
+// (ai) write updated settings
+await Bun.write(`${root_dir}/.vscode/settings.json`, JSON.stringify(settings, null, 2))
 
-  // (ai) write updated settings
-  await Bun.write(`${root_dir}/.vscode/settings.json`, JSON.stringify(settings, null, 2))
-
-  console.log('✓ updated vscode ignore list')
-}
-
-generate_list_files_hidden()
+console.log('\n✓ updated vscode ignore list\n')
