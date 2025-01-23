@@ -18,8 +18,9 @@ for (const file_name of target_files) {
 // (ai) replace the content in readme.md from the # (generated) position
 const readme_file = Bun.file(`${root_dir}/readme.md`)
 const readme_content = await readme_file.text()
-const readme_content_without_generated = readme_content.split('\n# (generated)')[0]
-const readme_content_with_generated = `${readme_content_without_generated}\n# (generated)\n\n${rules_content}`
+const readme_content_without_generated = readme_content.split('\n## (generated)')[0]
+const readme_content_with_generated = `${readme_content_without_generated}\n## (generated)\n\n${rules_content}`
+console.log('readme_content_with_generated', readme_content_with_generated)
 await Bun.write(`${root_dir}/readme.md`, readme_content_with_generated)
 
 console.log('\n✔️ ai rules generated successfully\n')

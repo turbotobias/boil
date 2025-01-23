@@ -72,9 +72,6 @@ interface CloudflareBindings {
 	STRAVA_CLIENT_SECRET: string;
 	STRAVA_REFRESH_TOKEN: string;
 	APPLE_MAPS_ACCESS_TOKEN: string;
-	r2: R2Bucket;
-	d1: D1Database;
-	queue: Queue;
 	vectorize: VectorizeIndex;
 	ai: Ai;
 }

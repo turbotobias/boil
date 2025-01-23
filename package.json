@@ -4,11 +4,11 @@
 	"type": "module",
 	"scripts": {
 		"dev": "bun run gen && wrangler dev ./src/index.ts --live-reload --experimental-vectorize-bind-to-prod",
-		"deploy": "wrangler deploy ./src/index.ts --minify",
+		"deploy": "bun precommit && wrangler deploy ./src/index.ts --minify",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint": "biome check --fix .",
 		"lint:fix": "biome check --write .",
-		"gen": "bun gen:types && bun gen:list-rules-ai && bun gen:list-files-hidden",
+		"gen": "bun gen:types && bun gen:list-rules-ai && bun gen:list-files-hidden && bun gen:env",
 		"gen:env": "bun run scripts/generate-env-all-over.ts",
 		"gen:types": "wrangler types --env-interface CloudflareBindings",
 		"gen:list-rules-ai": "bun run scripts/generate-list-rules-ai.ts",
