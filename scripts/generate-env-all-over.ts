@@ -87,6 +87,8 @@ async function generate_env_all_over() {
   await Bun.write(file_output_json_public, json_public)
   await Bun.write(file_output_json_private, json_private)
   await Bun.write(file_output_dev_vars, env_string)
+
+  console.log('\n✓ updated env files\n')
 }
 
 generate_env_all_over()

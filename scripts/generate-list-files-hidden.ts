@@ -5,7 +5,6 @@ const root_dir = process.env.TEST_ROOT_DIR || `${import.meta.dir}/..`
 const settings = JSON.parse(await Bun.file(`${root_dir}/.vscode/settings.json`).text())
 const gitignore = await Bun.file(`${root_dir}/.gitignore`).text()
 const hidden_list = await Bun.file(`${root_dir}/list-files-hidden.yaml`).text()
-console.log('hidden_list', hidden_list)
 
 // (ai) process gitignore lines
 const patterns = [hidden_list, gitignore]

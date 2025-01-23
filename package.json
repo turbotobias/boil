@@ -13,7 +13,8 @@
 		"gen:types": "wrangler types --env-interface CloudflareBindings",
 		"gen:list-rules-ai": "bun run scripts/generate-list-rules-ai.ts",
 		"gen:list-files-hidden": "bun run scripts/generate-list-files-hidden.ts",
-		"precommit": "bun lint && bun gen && bun test --coverage --bail=1"
+		"precommit": "bun lint && bun gen && bun test --coverage --bail=1",
+		"reinstall": "bun run ./scripts/reinstall.ts"
 	},
 	"dependencies": {
 		"hono": "^4.6.17",
@@ -21,10 +22,10 @@
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250121.0",
-		"@types/bun": "^1.1.17",
+		"@types/bun": "^1.2.0",
 		"typescript": "^5.7.3",
-		"vitest": "^3.0.2",
-		"wrangler": "^3.103.2",
+		"vitest": "^3.0.3",
+		"wrangler": "^3.105.0",
 		"trash": "^9.0.0"
 	}
 }

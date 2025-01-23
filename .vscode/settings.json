@@ -15,7 +15,7 @@
   "search.exclude": {
     "**/.windsurfrules": true,
     "**/.cursorrules": true,
-    "**/bun.lockb": true,
+    "**/bun.lock": true,
     "**/worker-configuration.d.ts": true,
     "**/env.d.ts": true,
     "**/biome.json": true,
@@ -40,7 +40,7 @@
   "files.exclude": {
     "**/.windsurfrules": true,
     "**/.cursorrules": true,
-    "**/bun.lockb": true,
+    "**/bun.lock": true,
     "**/worker-configuration.d.ts": true,
     "**/env.d.ts": true,
     "**/biome.json": true,
@@ -65,7 +65,7 @@
   "files.watcherExclude": {
     "**/.windsurfrules": true,
     "**/.cursorrules": true,
-    "**/bun.lockb": true,
+    "**/bun.lock": true,
     "**/worker-configuration.d.ts": true,
     "**/env.d.ts": true,
     "**/biome.json": true,
