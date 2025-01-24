@@ -15,5 +15,5 @@ import { nanoid } from 'nanoid'
  * @returns A random string.
  */
 export function id(size?: number) {
-  return nanoid(size)
+	return nanoid(size)
 }

@@ -10,8 +10,8 @@ const rules_count = rules_content.split('\n').length
 const target_files = ['.cursorrules', '.windsurfrules']
 
 for (const file_name of target_files) {
-  const file_path = `${root_dir}/${file_name}`
-  await Bun.write(file_path, rules_content)
+	const file_path = `${root_dir}/${file_name}`
+	await Bun.write(file_path, rules_content)
 }
 
 // (ai) replace the content in readme.md from the ## (generated) position

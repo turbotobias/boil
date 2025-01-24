@@ -2,6 +2,14 @@
 
 interface CloudflareBindings {
 	kv: KVNamespace;
+	NODE_ENV: string;
+	VITE_PUBLIC_SERVER: string;
+	VITE_PUBLIC_SERVER_PORT: string;
+	ZERO_UPSTREAM_DB: string;
+	ZERO_CVR_DB: string;
+	ZERO_CHANGE_DB: string;
+	ZERO_AUTH_SECRET: string;
+	ZERO_REPLICA_FILE: string;
 	X_AI_API_KEY: string;
 	ANTHROPIC_API_KEY: string;
 	PUBLIC_POSTHOG_API_HOST: string;

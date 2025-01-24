@@ -1,4 +1,4 @@
-Attempt at a cloudflare-first backend for end-to-end data coherence, speed, reliability, and developer velocity
+
 
 > ___ please write above 👆, below is auto-generated from `./list-rules-ai.yaml` 👇 ___
 
