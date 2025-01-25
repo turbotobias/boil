@@ -1,8 +1,7 @@
-import { Hono } from 'hono'
 import { setCookie } from 'hono/cookie'
 import { SignJWT } from 'jose'
-
-export const app = new Hono().basePath('/api')
+import { app } from '.'
+import { must } from '../utils/types'
 
 // See seed.sql
 // In real life you would of course authenticate the user however you like.
@@ -39,12 +38,3 @@ app.get('/login', async (c) => {
 
 	return c.text('ok')
 })
-
-export default app
-
-function must<T>(val: T) {
-	if (!val) {
-		throw new Error('Expected value to be defined')
-	}
-	return val
-}

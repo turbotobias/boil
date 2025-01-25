@@ -12,3 +12,4 @@ biome.json
 .gitattributes
 generated
 .vscode
+package-lock.json

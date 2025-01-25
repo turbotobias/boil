@@ -7,8 +7,8 @@ features and capabilities:
   - Test everything
 
 tech:
-  - postgresql (Main database hosted on Docker at fly.io)
-  - zero sync (Sync engine between Postgres, Cloudflare Durable Objects, and browsers; docs: https://zero.rocicorp.dev/docs/zero-schema)
+  - postgresql (main database)
+  - zero sync (sync engine between Postgres, Cloudflare Durable Objects, and browsers; docs: https://zero.rocicorp.dev/docs/zero-schema)
   - cloudflare workers (microservices)
   - cloudflare workers_ai (function calling)
   - cloudflare ai_gateway (maybe?)

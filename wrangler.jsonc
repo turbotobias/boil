@@ -23,13 +23,13 @@
 			"binding": "vectorize",
 			"index_name": "vectorize"
 		}
-	],
-	"kv_namespaces": [
-		{
-			"binding": "kv",
-			"id": "f6cf8acfca03469399c3c6097a0b3165"
-		}
 	]
+	// "kv_namespaces": [
+	// 	{
+	// 		"binding": "kv",
+	// 		"id": "f6cf8acfca03469399c3c6097a0b3165"
+	// 	}
+	// ]
 	// "d1_databases": [
 	//   {
 	//     "binding": "d1",

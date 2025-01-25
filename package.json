@@ -3,32 +3,26 @@
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
-
 	"scripts": {
 		"dev:db-up": "docker compose --env-file .env -f ./docker/docker-compose.yml up",
 		"dev:zero-cache": "zero-cache-dev -p src/app/schema.ts",
 		"dev:ui": "vite",
 		"dev:db-down": "docker compose --env-file .env -f ./docker/docker-compose.yml down",
 		"dev:clean": "source .env && docker volume rm -f docker_zstart_pgdata && rm -rf \"${ZERO_REPLICA_FILE}\"*",
-
 		"dev": "bun run gen && wrangler dev ./src/api/index.ts --live-reload --experimental-vectorize-bind-to-prod",
 		"deploy": "bun precommit && wrangler deploy ./src/api/index.ts --minify",
-
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint": "biome check --fix .",
 		"lint:fix": "biome check --write .",
-
 		"gen": "bun gen:types && bun gen:list-rules-ai && bun gen:list-files-hidden && bun gen:env",
 		"gen:env": "bun run scripts/generate-env-all-over.ts",
 		"gen:types": "wrangler types --env-interface CloudflareBindings",
 		"gen:list-rules-ai": "bun run scripts/generate-list-rules-ai.ts",
 		"gen:list-files-hidden": "bun run scripts/generate-list-files-hidden.ts",
-
 		"precommit": "bun lint && bun gen",
 		"clean": "bun run ./scripts/reinstall.ts",
 		"reinstall": "bun run clean && bun pm cache rm && bun install --force"
 	},
-
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",
 		"@rocicorp/zero": "^0.11.2025011402",
@@ -39,7 +33,6 @@
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
-
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250121.0",
 		"@types/bun": "^1.2.0",
@@ -49,9 +42,10 @@
 		"@types/react-dom": "^19.0.3",
 		"@vitejs/plugin-react": "^4.3.4",
 		"dotenv": "^16.4.5",
+		"supabase": "^2.6.8",
 		"trash": "^9.0.0",
 		"typescript": "^5.7.3",
-		"wrangler": "^3.105.0",
-		"vite": "5.4.9"
+		"vite": "5.4.9",
+		"wrangler": "^3.105.0"
 	}
 }

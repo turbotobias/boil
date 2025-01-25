@@ -2,14 +2,15 @@ import { getRequestListener } from '@hono/node-server'
 import react from '@vitejs/plugin-react'
 import dotenv from 'dotenv'
 import { defineConfig } from 'vite'
-import { app } from './api/index.js'
+import { app } from './src/api/index.js'
 
 if (process.env.NODE_ENV === 'development') {
 	console.log('NODE ENV!')
-	dotenv.config()
+	dotenv.config({ path: '.env' })
 }
 
 export default defineConfig({
+	root: './src/app',
 	build: {
 		target: 'es2022',
 	},
