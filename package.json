@@ -1,5 +1,6 @@
 {
-	"name": "boilerplate-backend",
+	"name": "backend",
+	"version": "0.0.0",
 	"private": true,
 	"type": "module",
 
@@ -31,7 +32,6 @@
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",
 		"@rocicorp/zero": "^0.11.2025011402",
-		"@rocicorp/zero-sqlite3": "^1.0.4",
 		"hono": "^4.6.6",
 		"jose": "^5.9.6",
 		"js-cookie": "^3.0.5",
@@ -49,7 +49,6 @@
 		"@types/react-dom": "^19.0.3",
 		"@vitejs/plugin-react": "^4.3.4",
 		"dotenv": "^16.4.5",
-    "globals": "^15.9.0",
 		"trash": "^9.0.0",
 		"typescript": "^5.7.3",
 		"wrangler": "^3.105.0",

@@ -1,8 +1,3 @@
 {
-	"recommendations": [
-		"biomejs.biome",
-		"oven.bun-vscode",
-		"adrianwilczynski.toggle-hidden",
-		"amodio.toggle-excluded-files"
-	]
+	"recommendations": ["biomejs.biome", "oven.bun-vscode", "adrianwilczynski.toggle-hidden"]
 }

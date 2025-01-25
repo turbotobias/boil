@@ -1,11 +1,6 @@
 import { Hono } from 'hono'
 import { setCookie } from 'hono/cookie'
-import { handle } from 'hono/vercel'
 import { SignJWT } from 'jose'
-
-export const config = {
-	runtime: 'edge',
-}
 
 export const app = new Hono().basePath('/api')
 
@@ -45,7 +40,7 @@ app.get('/login', async (c) => {
 	return c.text('ok')
 })
 
-export default handle(app)
+export default app
 
 function must<T>(val: T) {
 	if (!val) {
