@@ -6,7 +6,7 @@ features and capabilities:
   - Automate everything
   - Test everything
 
-technology stack:
+tech:
   - postgresql (Main database hosted on Docker at fly.io)
   - zero sync (Sync engine between Postgres, Cloudflare Durable Objects, and browsers; docs: https://zero.rocicorp.dev/docs/zero-schema)
   - cloudflare workers (microservices)
