@@ -15,7 +15,10 @@ const userID = decodedJWT?.sub ? (decodedJWT.sub as string) : 'anon'
 const z = new Zero({
 	userID,
 	auth: () => encodedJWT,
-	server: import.meta.env.VITE_PUBLIC_SERVER,
+	// In development, point to local Worker
+	server: import.meta.env.DEV
+		? 'http://localhost:8787/v1/zero-sync'
+		: 'https://aitentic.pacepacepace.workers.dev/v1/zero-sync',
 	schema,
 	// This is often easier to develop with if you're frequently changing
 	// the schema. Switch to 'idb' for local-persistence.

@@ -3,8 +3,9 @@
 	"name": "aitentic",
 	"compatibility_date": "2025-01-21",
 	"compatibility_flags": ["nodejs_compat"],
-	"main": "src/index.ts",
-	// "pages_build_output_dir": "./dist",
+
+	"main": "./src/api/index.ts",
+
 	/** https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement*/
 	"placement": {
 		"mode": "smart"

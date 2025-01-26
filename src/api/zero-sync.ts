@@ -1,7 +1,9 @@
+import { Hono } from 'hono'
 import { setCookie } from 'hono/cookie'
 import { SignJWT } from 'jose'
-import { app } from '.'
 import { must } from '../utils/types'
+
+export const hono_zero_sync = new Hono<{ Bindings: CloudflareBindings }>()
 
 // See seed.sql
 // In real life you would of course authenticate the user however you like.
@@ -21,7 +23,7 @@ function randomInt(max: number) {
 	return Math.floor(Math.random() * max)
 }
 
-app.get('/login', async (c) => {
+hono_zero_sync.get('/login', async (c) => {
 	const jwtPayload = {
 		sub: userIDs[randomInt(userIDs.length)],
 		iat: Math.floor(Date.now() / 1000),
@@ -37,4 +39,10 @@ app.get('/login', async (c) => {
 	})
 
 	return c.text('ok')
+})
+
+process.on('SIGINT', () => {
+	console.log('Received SIGINT - cleaning up Zero processes')
+	// Add your cleanup logic here
+	process.exit(0)
 })

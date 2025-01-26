@@ -1,6 +1,6 @@
 
 features and capabilities:
-  - A Cloudflare-first backend for speed, reliability, and developer velocity
+  - A Cloudflare-first backend
   - Distributed realtime from PostgreSQL to backend workflows to frontends
   - AI everything
   - Automate everything
@@ -9,7 +9,7 @@ features and capabilities:
 tech:
   - postgresql (main database)
   - zero sync (sync engine between Postgres, Cloudflare Durable Objects, and browsers; docs: https://zero.rocicorp.dev/docs/zero-schema)
-  - cloudflare workers (microservices)
+  - cloudflare workerd (sort of micoservices)
   - cloudflare workers_ai (function calling)
   - cloudflare ai_gateway (maybe?)
   - cloudflare vectorize (embeddings)
@@ -19,7 +19,7 @@ tech:
   - cloudflare hyperdrive (Postgres connection pool)
   - typescript
   - effect (All custom code/business logic: error handling, piping/workflows, tracing/logging)
-  - bun (Package manager and testing framework)
+  - workerd (cloudflare worker runtime)
 
 code quality guidelines:
   - Rely on existing code
@@ -41,9 +41,16 @@ code style rules:
   - External dependencies => default casing
   - Comments: ai_generated => prefix with (ai)
 
-directory specific rules:
-  - src/** => use Bun as test runner, write 100% Cloudflare Workers compatible code, no Bun-specific code
-  - script/** => use Bun exclusively for tests, write 100% Bun code, strictly no Node.js code
+directory specific rules for ./src/**:
+  - write 100% Cloudflare Workers compatible code (semi node compatible), no Bun-specific code
+
+directory specific rules for ./scripts/**:
+  - use Bun exclusively for tests, write 100% Bun code, strictly no Node.js code
+
+shell script rules:
+  - use "trash" to delete files and directories (never use "rm -rf")
+  - use "bunx" to run scripts (never use "npx", "pnpx")
+  - use "bun" or "bun run" to run scripts (never use "node")
 
 core principles:
   - Begin with foundational observations
