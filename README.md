@@ -6,15 +6,11 @@
 
 
 features and capabilities:
-  - A Cloudflare-first backend
-  - PostgreSQL
-  - AI everything
-  - Automate everything
-  - Test everything
+  - Cloudflare, Postgres, AI, realtime
 
 tech:
   - postgresql (main database)
-  - zero sync (sync engine between Postgres, Cloudflare Durable Objects, and browsers; docs: https://zero.rocicorp.dev/docs/zero-schema)
+  - zero sync (sync engine between Postgres and browsers; docs: https://zero.rocicorp.dev/docs/zero-schema )
   - cloudflare workerd (sort of micoservices)
   - cloudflare workers_ai (function calling)
   - cloudflare ai_gateway (maybe?)

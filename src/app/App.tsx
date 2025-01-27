@@ -16,7 +16,7 @@ function App() {
 	const [mediums,error_mediums] = useQuery(z.query.medium)
 
 	return (<div>
-		<h1>App</h1>
+		<h1>Data</h1>
 		<p>users: {JSON.stringify(users)}</p>
 		<p>error_users: {JSON.stringify(error_users)}</p>
 		<br />
