@@ -1,6 +1,5 @@
-# hide/show these files in vscode (just visually cleaner)
-# .gitignore files are automatically included
-# files listed below are still added to git (use .gitignore to exclude files from git)
+# any file listed here will be hidden in vscode explorer
+# .gitignore files are automatically included (still, use .gitignore to exclude files from git)
 
 .windsurfrules
 .cursorrules

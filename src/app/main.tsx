@@ -15,12 +15,13 @@ const userID = decodedJWT?.sub ? (decodedJWT.sub as string) : 'anon'
 const z = new Zero({
 	userID,
 	auth: () => encodedJWT,
-	// In development, point to local Worker
-	server: 'http://localhost:4848',
+	// Point to local zero-cache server in development
+	// server: import.meta.env.DEV ? 'http://localhost:4848' : 'https://v1-zero-cache.fly.dev',
+	server: 'https://v1-zero-cache.fly.dev',
 	schema,
-	// This is often easier to develop with if you're frequently changing
-	// the schema. Switch to 'idb' for local-persistence.
-	kvStore: 'mem',
+	// Use persistent storage in production
+	// kvStore: import.meta.env.DEV ? 'mem' : 'idb',
+	kvStore: 'idb'
 })
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>

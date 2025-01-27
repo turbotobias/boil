@@ -11,3 +11,4 @@ dist
 logs
 node_modules
 generated/env.*
+fly.toml

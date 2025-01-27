@@ -7,7 +7,7 @@
 
 features and capabilities:
   - A Cloudflare-first backend
-  - Distributed realtime from PostgreSQL to backend workflows to frontends
+  - PostgreSQL
   - AI everything
   - Automate everything
   - Test everything
@@ -25,7 +25,6 @@ tech:
   - cloudflare hyperdrive (Postgres connection pool)
   - typescript
   - effect (All custom code/business logic: error handling, piping/workflows, tracing/logging)
-  - workerd (cloudflare worker runtime)
 
 code quality guidelines:
   - Rely on existing code
