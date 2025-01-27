@@ -16,12 +16,10 @@ const z = new Zero({
 	userID,
 	auth: () => encodedJWT,
 	// Point to local zero-cache server in development
-	// server: import.meta.env.DEV ? 'http://localhost:4848' : 'https://v1-zero-cache.fly.dev',
-	server: 'https://v1-zero-cache.fly.dev',
+	server: import.meta.env.DEV ? 'http://localhost:4848' : 'https://v1-zero-cache.fly.dev',
 	schema,
 	// Use persistent storage in production
-	// kvStore: import.meta.env.DEV ? 'mem' : 'idb',
-	kvStore: 'idb'
+	kvStore: import.meta.env.DEV ? 'mem' : 'idb',
 })
 
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
