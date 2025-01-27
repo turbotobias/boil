@@ -1,10 +1,9 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "aitentic",
+	"name": "pace",
 	"compatibility_date": "2025-01-21",
 	"compatibility_flags": ["nodejs_compat"],
-
-	"main": "./src/api/index.ts",
+	"pages_build_output_dir": "./dist",
 
 	/** https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement*/
 	"placement": {

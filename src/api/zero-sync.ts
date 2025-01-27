@@ -42,7 +42,6 @@ hono_zero_sync.get('/login', async (c) => {
 })
 
 process.on('SIGINT', () => {
-	console.log('Received SIGINT - cleaning up Zero processes')
-	// Add your cleanup logic here
+	console.log('received SIGINT - cleaning up Zero processes')
 	process.exit(0)
 })

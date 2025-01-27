@@ -6,16 +6,15 @@
 	"scripts": {
 		"dev:db-up": "docker compose --env-file .env -f ./docker/docker-compose.yml up",
 		"dev:db-down": "docker compose --env-file .env -f ./docker/docker-compose.yml down",
-		"dev:zero-cache": "zero-cache-dev -p src/app/schema.ts",
-		"dev:ui": "vite",
 		"dev:clean": "source .env && docker volume rm -f docker_zstart_pgdata && rm -rf \"${ZERO_REPLICA_FILE}\"*",
 
-		"dev": "bun run gen && wrangler dev ./src/api/index.ts --live-reload --experimental-vectorize-bind-to-prod",
+		"dev:zero-cache": "zero-cache-dev -p src/app/schema.ts",
 
-		"dev:worker": "wrangler dev ./src/worker.ts",
-		"deploy:ui": "bun precommit && bun build:ui && wrangler pages deploy ./dist",
+		"dev:ui": "vite",
 		"build:ui": "vite build",
+		"deploy:ui": "bun precommit && bun build:ui && wrangler pages deploy ./dist",
 
+		"dev": "bun run gen && wrangler dev ./src/api/index.ts --live-reload --experimental-vectorize-bind-to-prod",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint": "biome check --fix .",
 		"lint:fix": "biome check --write .",
@@ -30,9 +29,8 @@
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",
-		"@rocicorp/zero": "^0.11.2025011402",
-		"@rocicorp/zero-sqlite3": "^1.0.4",
-		"hono": "^4.6.6",
+		"@rocicorp/zero": "^0.12.2025012501",
+		"hono": "^4.6.19",
 		"jose": "^5.9.6",
 		"js-cookie": "^3.0.5",
 		"nanoid": "^5.0.9",
@@ -40,18 +38,18 @@
 		"react-dom": "^18.3.1"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250121.0",
+		"@cloudflare/workers-types": "^4.20250124.3",
 		"@types/bun": "^1.2.0",
 		"@types/js-cookie": "^3.0.6",
-		"@types/node": "^22.7.9",
-		"@types/react": "^19.0.7",
+		"@types/node": "^22.10.10",
+		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
 		"@vitejs/plugin-react": "^4.3.4",
-		"dotenv": "^16.4.5",
+		"dotenv": "^16.4.7",
 		"supabase": "^2.6.8",
 		"trash": "^9.0.0",
 		"typescript": "^5.7.3",
 		"vite": "5.4.9",
-		"wrangler": "^3.105.0"
+		"wrangler": "^3.105.1"
 	}
 }

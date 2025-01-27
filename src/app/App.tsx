@@ -1,41 +1,43 @@
 import { escapeLike } from '@rocicorp/zero'
-import { useQuery, useZero } from '@rocicorp/zero/react'
+import { useQuery,useZero } from '@rocicorp/zero/react'
 import Cookies from 'js-cookie'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect,useState } from 'react'
 import type { MouseEvent } from 'react'
 import { formatDate } from './date'
 import { randInt } from './rand'
 import type { Schema } from './schema'
 import { randomMessage } from './test-data'
 
-function App() {
-	const z = useZero<Schema>()
-	const [users] = useQuery(z.query.user)
-	const [mediums] = useQuery(z.query.medium)
+const useZ = useZero<Schema>;
 
-	const [filterUser, setFilterUser] = useState<string>('')
-	const [filterText, setFilterText] = useState<string>('')
+function App() {
+	const z = useZ();
+	const users = useQuery(z.query.user)
+	const mediums = useQuery(z.query.medium)
+
+	const [filterUser,setFilterUser] = useState<string>('')
+	const [filterText,setFilterText] = useState<string>('')
 
 	const all = z.query.message
 	const [allMessages] = useQuery(all)
 
 	let filtered = all
-		.related('medium', (medium) => medium.one())
-		.related('sender', (sender) => sender.one())
-		.orderBy('timestamp', 'desc')
+		.related('medium',(medium) => medium.one())
+		.related('sender',(sender) => sender.one())
+		.orderBy('timestamp','desc')
 
 	if (filterUser) {
-		filtered = filtered.where('senderID', filterUser)
+		filtered = filtered.where('senderID',filterUser)
 	}
 
 	if (filterText) {
-		filtered = filtered.where('body', 'LIKE', `%${escapeLike(filterText)}%`)
+		filtered = filtered.where('body','LIKE',`%${escapeLike(filterText)}%`)
 	}
 
 	const [filteredMessages] = useQuery(filtered)
 
 	const hasFilters = filterUser || filterText
-	const [action, setAction] = useState<'add' | 'remove' | undefined>(undefined)
+	const [action,setAction] = useState<'add' | 'remove' | undefined>(undefined)
 
 	useEffect(() => {
 		if (action !== undefined) {
@@ -46,11 +48,11 @@ function App() {
 					deleteRandomMessage()
 				}
 				setAction(undefined)
-			}, 1000 / 60)
+			},1000 / 60)
 
 			return () => clearInterval(timer)
 		}
-	}, [action])
+	},[action])
 
 	const deleteRandomMessage = () => {
 		if (allMessages.length === 0) {
@@ -63,7 +65,7 @@ function App() {
 	}
 
 	const addRandomMessage = () => {
-		z.mutate.message.insert(randomMessage(users, mediums))
+		z.mutate.message.insert(randomMessage(users[0],mediums[0]))
 		return true
 	}
 
@@ -79,14 +81,14 @@ function App() {
 		deleteRandomMessage()
 	}
 
-	const editMessage = (e: MouseEvent, id: string, senderID: string, prev: string) => {
+	const editMessage = (e: MouseEvent,id: string,senderID: string,prev: string) => {
 		if (senderID !== z.userID && !e.shiftKey) {
 			alert(
 				"You aren't logged in as the sender of this message. Editing won't be permitted. Hold the shift key to try anyway."
 			)
 			return
 		}
-		const body = prompt('Edit message', prev)
+		const body = prompt('Edit message',prev)
 		z.mutate.message.update({
 			id,
 			body: body ?? prev,
@@ -206,7 +208,7 @@ function App() {
 								<td align="left">{message.medium?.name}</td>
 								<td align="left">{message.body}</td>
 								<td align="right">{formatDate(message.timestamp)}</td>
-								<td onMouseDown={(e) => editMessage(e, message.id, message.senderID, message.body)}>✏️</td>
+								<td onMouseDown={(e) => editMessage(e,message.id,message.senderID,message.body)}>✏️</td>
 							</tr>
 						))}
 					</tbody>
