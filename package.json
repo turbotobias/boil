@@ -3,17 +3,19 @@
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
+	"engines": {
+		"pnpm": ">=9.15.4",
+		"node": ">=23.6.1"
+	},
+	"packageManager": "pnpm@9.15.4",
 	"scripts": {
 		"dev:db-up": "docker compose --env-file .env -f ./docker/docker-compose.yml up",
 		"dev:db-down": "docker compose --env-file .env -f ./docker/docker-compose.yml down",
 		"dev:clean": "source .env && docker volume rm -f docker_zstart_pgdata && rm -rf \"${ZERO_REPLICA_FILE}\"*",
-
 		"dev:zero-cache": "zero-cache-dev -p src/app/schema.ts",
-
 		"dev:ui": "vite",
 		"build:ui": "vite build",
 		"deploy:ui": "bun precommit && bun build:ui && wrangler pages deploy ./dist",
-
 		"dev": "bun run gen && wrangler dev ./src/api/index.ts --live-reload --experimental-vectorize-bind-to-prod",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint": "biome check --fix .",
@@ -25,7 +27,12 @@
 		"gen:list-files-hidden": "bun run scripts/generate-list-files-hidden.ts",
 		"precommit": "bun gen",
 		"clean": "bun run ./scripts/reinstall.ts",
-		"reinstall": "bun run clean && bun pm cache rm && bun install --force"
+		"reinstall": "bun run clean && bun run check:node-npm-versions && pnpm install",
+		"prestart": "bun run check:node-npm-versions",
+		"preinstall": "bun run check:node-npm-versions",
+		"check:node-npm-versions": "node scripts/check-node-npm-versions.ts",
+		"check:node-npm-versions:verbose": "node scripts/check-node-npm-versions.ts verbose",
+		"check:dependecy-versions": "npm-check-updates -ui"
 	},
 	"dependencies": {
 		"@hono/node-server": "^1.13.7",
@@ -34,22 +41,25 @@
 		"jose": "^5.9.6",
 		"js-cookie": "^3.0.5",
 		"nanoid": "^5.0.9",
-		"react": "^18.3.1",
-		"react-dom": "^18.3.1"
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
 	},
 	"devDependencies": {
 		"@cloudflare/workers-types": "^4.20250124.3",
-		"@types/bun": "^1.2.0",
+		"@types/bun": "^1.2.1",
 		"@types/js-cookie": "^3.0.6",
-		"@types/node": "^22.10.10",
+		"@types/node": "^22.12.0",
 		"@types/react": "^19.0.8",
 		"@types/react-dom": "^19.0.3",
+		"@types/semver": "^7.5.8",
 		"@vitejs/plugin-react": "^4.3.4",
 		"dotenv": "^16.4.7",
-		"supabase": "^2.6.8",
+		"npm-check-updates": "^17.1.14",
+		"semver": "^7.6.3",
+		"supabase": "^2.9.6",
 		"trash": "^9.0.0",
 		"typescript": "^5.7.3",
-		"vite": "5.4.9",
+		"vite": "6.0.11",
 		"wrangler": "^3.105.1"
 	}
 }
