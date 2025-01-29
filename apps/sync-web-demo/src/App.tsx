@@ -17,7 +17,7 @@ function App() {
 
 	return (
 		<div>
-			<h1>Data</h1>
+			<h1>Data in sync</h1>
 			<p>users: {JSON.stringify(users)}</p>
 			<p>error_users: {JSON.stringify(error_users)}</p>
 			<br />

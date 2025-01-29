@@ -4,7 +4,9 @@
 	"private": true,
 	"type": "module",
 	"scripts": {
-		"dev": "vite",
+		"dev": "bun run ../../scripts/kill-ports.ts 5173 8787 && pnpm dev:vite & pnpm dev:wrangler",
+		"dev:vite": "vite --host",
+		"dev:wrangler": "wrangler pages dev --proxy 5173 --port 8787",
 		"build": "vite build",
 		"deploy": "pnpm build && wrangler pages deploy ./dist",
 		"test": "bun test --bail=1 --watch --coverage",

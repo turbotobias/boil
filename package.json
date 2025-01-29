@@ -8,8 +8,6 @@
 	},
 	"packageManager": "pnpm@9.15.4",
 	"scripts": {
-		"dev": "bun run gen && wrangler dev ./src/api/index.ts --live-reload --experimental-vectorize-bind-to-prod",
-
 		"precommit": "echo 'TODO precommit'",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint:fix": "biome check --fix .",
@@ -21,9 +19,10 @@
 		"check:hygiene": "pnpm check:node-npm-versions && pnpm check:dependecy-versions && bun gen && bun lint:fix",
 		"check:node-npm-versions": "node scripts/check-node-npm-versions.ts",
 		"check:dependecy-versions": "npm-check-updates -ui --deep",
-
-		"clean": "bun run ./scripts/reinstall.ts",
-		"reinstall": "bun run clean && pnpm check:node-npm-versions && pnpm install"
+		"script:clean": "bun run ./scripts/reinstall.ts",
+		"script:purge-cloudflare-pages": "bun run scripts/purge-cloudflare-pages.ts",
+		"script:kill-ports": "bun run scripts/kill-ports.ts ",
+		"reinstall": "bun run script:clean && pnpm check:node-npm-versions && pnpm install"
 	},
 	"devDependencies": {
 		"@types/semver": "^7.5.8",
