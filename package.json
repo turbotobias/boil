@@ -8,6 +8,7 @@
 	},
 	"packageManager": "pnpm@9.15.4",
 	"scripts": {
+		"dev": "turbo dev --filter=!@boil/sync-server",
 		"precommit": "echo 'TODO precommit'",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint:fix": "biome check --fix .",

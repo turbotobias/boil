@@ -5,6 +5,7 @@
 			"dependsOn": ["^lint:fix"]
 		},
 		"dev": {
+			"dependsOn": ["^lint:fix"],
 			"persistent": true,
 			"cache": false
 		}

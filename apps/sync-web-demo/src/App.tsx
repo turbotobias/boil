@@ -100,7 +100,7 @@ function App() {
 
 	const toggleLogin = async () => {
 		if (z.userID === 'anon') {
-			await fetch('http://localhost:65164/v1/zero-sync/login')
+			await fetch('/v1/zero-sync/login')
 		} else {
 			Cookies.remove('jwt')
 		}
