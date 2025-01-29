@@ -1,5 +1,5 @@
+import type { Medium, Message, User } from '@boil/sync-schema'
 import { randBetween, randID, randInt } from './rand'
-import type { Medium, Message, User } from './schema'
 
 const requests = [
 	'Hey guys, is the zero package ready yet?',
@@ -23,17 +23,21 @@ const replies = [
 
 export function randomMessage(users: readonly User[], mediums: readonly Medium[]): Message {
 	const id = randID()
-	const mediumID = mediums[randInt(mediums.length)].id
+	const medium = mediums[randInt(mediums.length)]
+	if (!medium) throw new Error('No mediums available')
+	const mediumID = medium.id
 	const timestamp = randBetween(1727395200000, new Date().getTime())
 	const isRequest = randInt(10) <= 6
 	const messages = isRequest ? requests : replies
 	const senders = users.filter((u) => u.partner === !isRequest)
-	const senderID = senders[randInt(senders.length)].id
+	const sender = senders[randInt(senders.length)]
+	if (!sender) throw new Error('No valid senders available')
+	const senderID = sender.id
 	return {
 		id,
 		senderID,
 		mediumID,
-		body: messages[randInt(messages.length)],
+		body: messages[randInt(messages.length)] ?? '',
 		timestamp,
 	}
 }

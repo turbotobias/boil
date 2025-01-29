@@ -1,12 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
+import App from './App'
 import './index.css'
+import { schema } from '@boil/server-sync'
 import { Zero } from '@rocicorp/zero'
 import { ZeroProvider } from '@rocicorp/zero/react'
 import { decodeJwt } from 'jose'
 import Cookies from 'js-cookie'
-import { schema } from './schema.ts'
 
 const encodedJWT = Cookies.get('jwt')
 const decodedJWT = encodedJWT && decodeJwt(encodedJWT)
@@ -16,7 +16,8 @@ const z = new Zero({
 	userID,
 	auth: () => encodedJWT,
 	// Point to local zero-cache server in development
-	server: import.meta.env.DEV ? 'http://localhost:4848' : 'https://v1-zero-cache.fly.dev',
+	server: 'https://v1-zero-cache-canary.fly.dev/',
+	// server: import.meta.env.DEV ? 'http://localhost:4848' : 'https://v1-zero-cache.fly.dev',
 	schema,
 	// Use persistent storage in production
 	kvStore: import.meta.env.DEV ? 'mem' : 'idb',

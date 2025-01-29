@@ -1,5 +1,5 @@
 {
-	"name": "backend",
+	"name": "boil",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
@@ -8,57 +8,26 @@
 	},
 	"packageManager": "pnpm@9.15.4",
 	"scripts": {
-		"dev:db-up": "docker compose --env-file .env -f ./docker/docker-compose.yml up",
-		"dev:db-down": "docker compose --env-file .env -f ./docker/docker-compose.yml down",
-		"dev:clean": "source .env && docker volume rm -f docker_zstart_pgdata && rm -rf \"${ZERO_REPLICA_FILE}\"*",
-		"dev:zero-cache": "zero-cache-dev -p src/app/schema.ts",
-		"dev:ui": "vite",
-		"build:ui": "vite build",
-		"deploy:ui": "bun precommit && bun build:ui && wrangler pages deploy ./dist",
 		"dev": "bun run gen && wrangler dev ./src/api/index.ts --live-reload --experimental-vectorize-bind-to-prod",
+
+		"precommit": "echo 'precommit'",
 		"test": "bun test --bail=1 --watch --coverage",
-		"lint": "biome check --fix .",
-		"lint:fix": "biome check --write .",
-		"gen": "bun gen:types && bun gen:list-rules-ai && bun gen:list-files-hidden && bun gen:env",
+		"lint:fix": "biome check --fix .",
+		"lint:fix-force": "biome check --write .",
+		"gen": "bun gen:list-rules-ai && bun gen:list-files-hidden && bun gen:env",
 		"gen:env": "bun run scripts/generate-env-all-over.ts",
-		"gen:types": "wrangler types --env-interface CloudflareBindings",
 		"gen:list-rules-ai": "bun run scripts/generate-list-rules-ai.ts",
 		"gen:list-files-hidden": "bun run scripts/generate-list-files-hidden.ts",
-		"precommit": "bun gen",
-		"clean": "bun run ./scripts/reinstall.ts",
-		"reinstall": "bun run clean && bun run check:node-npm-versions && pnpm install",
-		"prestart": "bun run check:node-npm-versions",
-		"preinstall": "bun run check:node-npm-versions",
+		"check:hygiene": "pnpm check:node-npm-versions && pnpm check:dependecy-versions && bun gen && bun lint:fix",
 		"check:node-npm-versions": "node scripts/check-node-npm-versions.ts",
-		"check:node-npm-versions:verbose": "node scripts/check-node-npm-versions.ts verbose",
-		"check:dependecy-versions": "npm-check-updates -ui"
-	},
-	"dependencies": {
-		"@hono/node-server": "^1.13.7",
-		"@rocicorp/zero": "^0.12.2025012501",
-		"hono": "^4.6.19",
-		"jose": "^5.9.6",
-		"js-cookie": "^3.0.5",
-		"nanoid": "^5.0.9",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0"
+		"check:dependecy-versions": "npm-check-updates -ui --deep",
+
+		"clean": "bun run ./scripts/reinstall.ts",
+		"reinstall": "bun run clean && pnpm check:node-npm-versions && pnpm install"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250124.3",
-		"@types/bun": "^1.2.1",
-		"@types/js-cookie": "^3.0.6",
-		"@types/node": "^22.12.0",
-		"@types/react": "^19.0.8",
-		"@types/react-dom": "^19.0.3",
 		"@types/semver": "^7.5.8",
-		"@vitejs/plugin-react": "^4.3.4",
-		"dotenv": "^16.4.7",
 		"npm-check-updates": "^17.1.14",
-		"semver": "^7.6.3",
-		"supabase": "^2.9.6",
-		"trash": "^9.0.0",
-		"typescript": "^5.7.3",
-		"vite": "6.0.11",
-		"wrangler": "^3.105.1"
+		"semver": "^7.6.3"
 	}
 }

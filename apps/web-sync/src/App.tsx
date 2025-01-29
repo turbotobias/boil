@@ -1,28 +1,29 @@
+import type { Schema } from '@boil/server-sync'
+import { useQuery, useZero } from '@rocicorp/zero/react'
 // import { escapeLike } from '@rocicorp/zero'
-import { useQuery,useZero } from '@rocicorp/zero/react'
 // import Cookies from 'js-cookie'
 // import { useEffect,useState } from 'react'
 // import type { MouseEvent } from 'react'
 // import { formatDate } from './date'
 // import { randInt } from './rand'
-import type { Schema } from './schema'
 // import { randomMessage } from './test-data'
 
-const useZ = useZero<Schema>;
+const useZ = useZero<Schema>
 
 function App() {
-	const z = useZ();
-	const [users,error_users] = useQuery(z.query.user)
-	const [mediums,error_mediums] = useQuery(z.query.medium)
+	const z = useZ()
+	const [users, error_users] = useQuery(z.query.user)
+	const [mediums, error_mediums] = useQuery(z.query.medium)
 
-	return (<div>
-		<h1>Data</h1>
-		<p>users: {JSON.stringify(users)}</p>
-		<p>error_users: {JSON.stringify(error_users)}</p>
-		<br />
-		<p>mediums: {JSON.stringify(mediums)}</p>
-		<p>error_mediums: {JSON.stringify(error_mediums)}</p>
-	</div>
+	return (
+		<div>
+			<h1>Data</h1>
+			<p>users: {JSON.stringify(users)}</p>
+			<p>error_users: {JSON.stringify(error_users)}</p>
+			<br />
+			<p>mediums: {JSON.stringify(mediums)}</p>
+			<p>error_mediums: {JSON.stringify(error_mediums)}</p>
+		</div>
 	)
 }
 // const [filterUser,setFilterUser] = useState<string>('')

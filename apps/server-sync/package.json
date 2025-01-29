@@ -1,0 +1,21 @@
+{
+	"name": "@boil/server-sync",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"main": "./src/schema.ts",
+	"scripts": {
+		"dev": "zero-cache-dev -p src/schema.ts",
+		"deploy": "fly deploy --remote-only",
+		"test": "bun test --bail=1 --watch --coverage",
+		"lint:fix": "biome check --fix .",
+		"lint:fix-force": "biome check --write .",
+		"start": "fly machine run . --local-only --name zero-cache-local --region fra --vm-size shared-cpu-2x --vm-memory 2048 --port 4848:4848/tcp --volume sqlite_db:/data --env-file .env"
+	},
+	"dependencies": {
+		"@rocicorp/zero": "^0.12.2025012900"
+	},
+	"devDependencies": {
+		"@boil/config-typescript": "workspace:*"
+	}
+}

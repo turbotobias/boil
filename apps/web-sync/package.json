@@ -1,0 +1,45 @@
+{
+	"name": "@boil/web-sync",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"deploy": "bun precommit && bun build:ui && wrangler pages deploy ./dist",
+		"test": "bun test --bail=1 --watch --coverage",
+		"lint:fix": "biome check --fix .",
+		"lint:fix-force": "biome check --write .",
+		"clean": "bun run ./scripts/reinstall.ts",
+		"reinstall": "bun run clean && pnpm install"
+	},
+	"dependencies": {
+		"@hono/node-server": "^1.13.7",
+		"@rocicorp/zero": "^0.12.2025012900",
+		"hono": "^4.6.19",
+		"jose": "^5.9.6",
+		"js-cookie": "^3.0.5",
+		"nanoid": "^5.0.9",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0"
+	},
+	"devDependencies": {
+		"@boil/config-typescript": "workspace:*",
+		"@boil/server-sync": "workspace:*",
+		"@cloudflare/workers-types": "^4.20250124.3",
+		"@types/bun": "^1.2.1",
+		"@types/js-cookie": "^3.0.6",
+		"@types/node": "^22.12.0",
+		"@types/react": "^19.0.8",
+		"@types/react-dom": "^19.0.3",
+		"@types/semver": "^7.5.8",
+		"@vitejs/plugin-react": "^4.3.4",
+		"dotenv": "^16.4.7",
+		"npm-check-updates": "^17.1.14",
+		"supabase": "^2.9.6",
+		"trash": "^9.0.0",
+		"typescript": "^5.7.3",
+		"vite": "6.0.11",
+		"wrangler": "^3.106.0"
+	}
+}

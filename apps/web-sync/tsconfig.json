@@ -1,0 +1,5 @@
+{
+	"extends": "@boil/config-typescript/react",
+	"include": ["."],
+	"exclude": ["dist", "node_modules"]
+}

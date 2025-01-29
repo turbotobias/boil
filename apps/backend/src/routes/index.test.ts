@@ -4,7 +4,7 @@ import app from './index'
 describe('app', () => {
 	test('GET / returns HTML with Hello Hono', async () => {
 		const res = await app.request('/')
-		expect(res.status).toBe(200)
+		expect(res.status).toEqual(200)
 		expect(res.headers.get('content-type')).toContain('text/html')
 		const text = await res.text()
 		expect(text).toContain('Hello Hono!')
@@ -14,7 +14,7 @@ describe('app', () => {
 		const rootRes = await app.request('/')
 		const pageRes = await app.request('/page')
 
-		expect(pageRes.status).toBe(200)
+		expect(pageRes.status).toEqual(200)
 		expect(pageRes.headers.get('content-type')).toContain('text/html')
 
 		const rootText = await rootRes.text()

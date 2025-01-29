@@ -1,0 +1,10 @@
+{
+	"name": "@boil/config-typescript",
+	"version": "0.0.0",
+	"private": true,
+	"exports": {
+		"./base": "./base.json",
+		"./base-web": "./base-web.json",
+		"./react": "./react.json"
+	}
+}

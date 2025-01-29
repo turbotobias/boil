@@ -1,0 +1,29 @@
+{
+	"name": "@boil/backend",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"dev": "wrangler dev -c ./wrangler.jsonc",
+		"deploy": "wrangler deploy -c ./wrangler.jsonc",
+		"test": "bun test --bail=1 --coverage",
+		"lint:fix": "biome check --fix .",
+		"lint:fix-force": "biome check --write ."
+	},
+	"dependencies": {
+		"@boil/utils": "workspace:*",
+		"@hono/node-server": "^1.13.7",
+		"@rocicorp/zero": "^0.12.2025012900",
+		"hono": "^4.6.19",
+		"jose": "^5.9.6",
+		"js-cookie": "^3.0.5",
+		"nanoid": "^5.0.9"
+	},
+	"devDependencies": {
+		"@boil/config-typescript": "workspace:*",
+		"@cloudflare/workers-types": "^4.20250124.3",
+		"@types/js-cookie": "^3.0.6",
+		"@types/node": "^22.12.0",
+		"wrangler": "^3.106.0"
+	}
+}

@@ -1,6 +1,6 @@
+import { spawnSync } from 'node:child_process'
 /* eslint-disable no-console */
 import { readFileSync } from 'node:fs'
-import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import semver from 'semver'
 
@@ -9,6 +9,7 @@ type TPackageJson = {
 		node?: string
 		pnpm?: string
 	}
+	packageManager?: `pnpm@${string}`
 }
 
 // checks that current node and pnpm versions satisfies requirements in package.json
@@ -23,12 +24,12 @@ const print_err_and_exit = (message: string): never => {
 	process.exit(1)
 }
 
-const check_pnpm_version = (pnpm_version_required: string | undefined): void => {
-	if (!pnpm_version_required) {
+const check_pnpm_version = (_pnpm_version_required: `pnpm@${string}` | undefined): void => {
+	if (!_pnpm_version_required) {
 		console.log('No required pnpm version specified')
 		return
 	}
-
+	const pnpm_version_required = _pnpm_version_required.replace('pnpm@', '')
 	const pnpm_version = spawnSync('pnpm', ['-v']).stdout.toString().trim()
 
 	if (VERBOSE) {
@@ -75,4 +76,4 @@ if (!json.engines) {
 }
 
 check_node_version(json.engines?.node)
-check_pnpm_version(json.engines?.pnpm)
+check_pnpm_version(json.packageManager)

@@ -1,0 +1,20 @@
+{
+	"name": "@boil/utils",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint:fix": "biome check --fix ."
+	},
+	"exports": {
+		"./format": "./src/format.ts",
+		"./generate": "./src/generate.ts",
+		"./types": "./src/types.ts"
+	},
+	"dependencies": {
+		"nanoid": "^5.0.9"
+	},
+	"devDependencies": {
+		"@boil/config-typescript": "workspace:*"
+	}
+}

@@ -6,17 +6,17 @@
 // for more complex examples, including many-to-many.
 
 import {
+	ANYONE_CAN,
+	type ExpressionBuilder,
+	NOBODY_CAN,
+	type Row,
+	boolean,
 	createSchema,
 	definePermissions,
-	type ExpressionBuilder,
-	type Row,
-	NOBODY_CAN,
-	ANYONE_CAN,
-	table,
-	string,
-	boolean,
 	number,
 	relationships,
+	string,
+	table,
 } from '@rocicorp/zero'
 
 const user = table('user')

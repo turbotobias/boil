@@ -3,21 +3,24 @@
 	"name": "aitentic",
 	"compatibility_date": "2025-01-21",
 	"compatibility_flags": ["nodejs_compat"],
-	"pages_build_output_dir": "./dist",
+	"main": "./src/routes/index.ts",
 
 	/** https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement*/
 	"placement": {
 		"mode": "smart"
 	},
+
 	/** https://developers.cloudflare.com/workers-ai/get-started/workers-wrangler/#2-connect-your-worker-to-workers-ai  */
 	"ai": {
 		"binding": "ai"
 	},
+
 	/** https://developers.cloudflare.com/workers/observability/logs/ */
 	"observability": {
 		"enabled": true,
 		"head_sampling_rate": 1
 	},
+
 	"vectorize": [
 		{
 			"binding": "vectorize",

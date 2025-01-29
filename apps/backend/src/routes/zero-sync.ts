@@ -1,7 +1,7 @@
+import { must } from '@boil/utils/types'
 import { Hono } from 'hono'
 import { setCookie } from 'hono/cookie'
 import { SignJWT } from 'jose'
-import { must } from '../utils/types'
 
 export const hono_zero_sync = new Hono<{ Bindings: CloudflareBindings }>()
 
