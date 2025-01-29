@@ -70,6 +70,9 @@ importers:
 
   apps/sync-web-demo:
     dependencies:
+      '@boil/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@hono/node-server':
         specifier: ^1.13.7
         version: 1.13.7(hono@4.6.19)

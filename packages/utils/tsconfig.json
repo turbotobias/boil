@@ -1,5 +1,5 @@
 {
 	"extends": "@boil/config-typescript/base",
-	"include": ["."],
+	"include": ["./src/**/*"],
 	"exclude": ["node_modules"]
 }

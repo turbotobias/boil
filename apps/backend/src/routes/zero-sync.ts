@@ -2,6 +2,7 @@ import { must } from '@boil/utils/types'
 import { Hono } from 'hono'
 import { setCookie } from 'hono/cookie'
 import { SignJWT } from 'jose'
+import { env } from '../../../../generated/env'
 
 export const hono_zero_sync = new Hono<{ Bindings: CloudflareBindings }>()
 
@@ -32,16 +33,11 @@ hono_zero_sync.get('/login', async (c) => {
 	const jwt = await new SignJWT(jwtPayload)
 		.setProtectedHeader({ alg: 'HS256' })
 		.setExpirationTime('30days')
-		.sign(new TextEncoder().encode(must(process.env.ZERO_AUTH_SECRET)))
+		.sign(new TextEncoder().encode(must(env.ZERO_AUTH_SECRET)))
 
 	setCookie(c, 'jwt', jwt, {
 		expires: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
 	})
 
 	return c.text('ok')
-})
-
-process.on('SIGINT', () => {
-	console.log('received SIGINT - cleaning up Zero processes')
-	process.exit(0)
 })
