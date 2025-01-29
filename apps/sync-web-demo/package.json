@@ -6,7 +6,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
-		"deploy": "bun precommit && bun build:ui && wrangler pages deploy ./dist",
+		"deploy": "pnpm build && wrangler pages deploy ./dist",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint:fix": "biome check --fix .",
 		"lint:fix-force": "biome check --write .",
