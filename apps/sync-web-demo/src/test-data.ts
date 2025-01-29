@@ -1,4 +1,4 @@
-import type { Medium, Message, User } from '@boil/sync-schema'
+import type { Medium, Message, User } from '@boil/sync-server'
 import { randBetween, randID, randInt } from './rand'
 
 const requests = [

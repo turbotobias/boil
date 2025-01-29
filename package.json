@@ -10,7 +10,7 @@
 	"scripts": {
 		"dev": "bun run gen && wrangler dev ./src/api/index.ts --live-reload --experimental-vectorize-bind-to-prod",
 
-		"precommit": "echo 'precommit'",
+		"precommit": "echo 'TODO precommit'",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint:fix": "biome check --fix .",
 		"lint:fix-force": "biome check --write .",

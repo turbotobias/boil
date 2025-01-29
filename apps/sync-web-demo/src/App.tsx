@@ -1,5 +1,5 @@
-import type { Schema } from '@boil/server-sync'
-import { useQuery, useZero } from '@rocicorp/zero/react'
+import type { Schema } from '@boil/sync-server'
+import { useQuery,useZero } from '@rocicorp/zero/react'
 // import { escapeLike } from '@rocicorp/zero'
 // import Cookies from 'js-cookie'
 // import { useEffect,useState } from 'react'
@@ -12,8 +12,8 @@ const useZ = useZero<Schema>
 
 function App() {
 	const z = useZ()
-	const [users, error_users] = useQuery(z.query.user)
-	const [mediums, error_mediums] = useQuery(z.query.medium)
+	const [users,error_users] = useQuery(z.query.user)
+	const [mediums,error_mediums] = useQuery(z.query.medium)
 
 	return (
 		<div>

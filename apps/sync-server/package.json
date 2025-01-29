@@ -1,5 +1,5 @@
 {
-	"name": "@boil/server-sync",
+	"name": "@boil/sync-server",
 	"version": "0.0.0",
 	"private": true,
 	"type": "module",
@@ -9,8 +9,7 @@
 		"deploy": "fly deploy --remote-only",
 		"test": "bun test --bail=1 --watch --coverage",
 		"lint:fix": "biome check --fix .",
-		"lint:fix-force": "biome check --write .",
-		"start": "fly machine run . --local-only --name zero-cache-local --region fra --vm-size shared-cpu-2x --vm-memory 2048 --port 4848:4848/tcp --volume sqlite_db:/data --env-file .env"
+		"lint:fix-force": "biome check --write ."
 	},
 	"dependencies": {
 		"@rocicorp/zero": "^0.12.2025012900"
