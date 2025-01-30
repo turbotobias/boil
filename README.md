@@ -11,14 +11,14 @@
 
 ### How it works
 
-grafana logs from zero-cache sync server
+It doesn't
 
+---
 > 👆 write above
->
+
 > 👇 below is generated from `./list-rules-ai.yaml`
 
 ## generated
-
 
 features and capabilities:
   - Cloudflare, Postgres, AI, realtime
