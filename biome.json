@@ -4,7 +4,7 @@
 		"enabled": true
 	},
 	"files": {
-		"ignore": ["package.json", "./generated/*", "node_modules/*"]
+		"ignore": ["package.json", "./generated/*", "node_modules/*", "./.turbo"]
 	},
 	"formatter": {
 		"enabled": true,

@@ -18,6 +18,7 @@ tech:
 
 code quality guidelines:
   - Rely on existing code
+  - Follow existing code organisation patterns
   - Only write new code when absolutely necessary
   - Write testable code
   - Reliability and error-free code is paramount
