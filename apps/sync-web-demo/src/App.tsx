@@ -100,7 +100,7 @@ function App() {
 
 	const toggleLogin = async () => {
 		if (z.userID === 'anon') {
-			await fetch('https://aitentic.pacepacepace.workers.dev/v1/zero-sync/login')
+			await fetch("http://localhost:8787/v1/zero-sync/login")
 		} else {
 			Cookies.remove('jwt')
 		}
