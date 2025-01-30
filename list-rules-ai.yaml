@@ -9,7 +9,7 @@ tech:
   - cloudflare workers_ai (function calling)
   - cloudflare ai_gateway (maybe?)
   - cloudflare vectorize (embeddings)
-  - cloudflare r2 (unstructured data storage)
+  - bunny for storage
   - cloudflare images (resize, optimize, transform images from R2)
   - cloudflare queues (async tasks/workflows)
   - cloudflare hyperdrive (Postgres connection pool)

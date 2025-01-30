@@ -1,0 +1,16 @@
+{
+	"name": "@boil/sync-zero",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"main": "./src/schema.ts",
+	"scripts": {
+		"lint:fix": "biome check --fix ."
+	},
+	"dependencies": {
+		"@rocicorp/zero": "^0.12.2025013000"
+	},
+	"devDependencies": {
+		"@boil/config-typescript": "workspace:*"
+	}
+}

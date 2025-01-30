@@ -16,8 +16,7 @@ const z = new Zero({
 	userID,
 	auth: () => encodedJWT,
 	// Point to local zero-cache server in development
-	server: 'https://v1-zero-cache-canary.fly.dev/',
-	// server: import.meta.env.DEV ? 'http://localhost:4848' : 'https://v1-zero-cache.fly.dev',
+	server: import.meta.env.DEV ? 'http://localhost:4848' : 'https://v1-zero-cache-canary.fly.dev/',
 	schema,
 	// Use persistent storage in production
 	kvStore: import.meta.env.DEV ? 'mem' : 'idb',

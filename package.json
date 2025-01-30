@@ -23,11 +23,16 @@
 		"script:clean": "bun run ./scripts/reinstall.ts",
 		"script:purge-cloudflare-pages": "bun run scripts/purge-cloudflare-pages.ts",
 		"script:kill-ports": "bun run scripts/kill-ports.ts ",
-		"reinstall": "bun run script:clean && pnpm check:node-npm-versions && pnpm install"
+		"reinstall": "bun run script:clean && pnpm i -w && pnpm check:node-npm-versions && pnpm install"
 	},
 	"devDependencies": {
 		"@types/semver": "^7.5.8",
 		"npm-check-updates": "^17.1.14",
-		"semver": "^7.6.3"
-	}
+		"semver": "^7.7.0"
+	},
+	"pnpm": {
+    "overrides": {
+      "glob": "^10.4.5"
+    }
+  }
 }

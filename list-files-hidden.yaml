@@ -1,6 +1,8 @@
 # any file listed here will be hidden in vscode explorer
-# .gitignore files are automatically included (still, use .gitignore to exclude files from git)
+# any file from .gitignore is automatically included (only files in .gitignore are excluded from git)
+# any file from .gitignore with -prefix (like -[name]) will be included anyways
 
+-fly.toml
 .windsurfrules
 .cursorrules
 bun.lock
