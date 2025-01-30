@@ -161,6 +161,12 @@ importers:
 
   packages/config-typescript: {}
 
+  packages/postgres:
+    devDependencies:
+      '@boil/config-typescript':
+        specifier: workspace:*
+        version: link:../config-typescript
+
   packages/sync-zero:
     dependencies:
       '@rocicorp/zero':

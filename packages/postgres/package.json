@@ -1,0 +1,13 @@
+{
+	"name": "@boil/postgres",
+	"version": "0.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"lint:fix": "biome check --fix .",
+		"deploy": "fly deploy ."
+	},
+	"devDependencies": {
+		"@boil/config-typescript": "workspace:*"
+	}
+}
