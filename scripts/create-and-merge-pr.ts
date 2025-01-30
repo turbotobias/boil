@@ -2,9 +2,16 @@ import { $ } from 'bun'
 
 const branch_name = `auto-update-${Date.now()}`
 
-try {
+const get_commit_message = () => {
 	const message = process.argv[2]
-	if (!message) throw new Error('No message provided')
+	console.log('message', message)
+	if (!message || process.argv[3]) throw new Error('no message - wrap it in quotes like "feat: message"')
+	return message
+}
+
+try {
+	const message = get_commit_message()
+	console.log('✔️ git commit -m ', message)
 	// Create and switch to new branch
 	await $`git checkout -b ${branch_name}`
 
