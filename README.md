@@ -6,7 +6,7 @@
 
 - `apps/backend`: hono on cloudflare
 -  [logs](https://fly-metrics.net/d/fly-logs/fly-logs?from=now-1h&to=now&var-source=prometheus_on_fly&var-app=v1-zero-cache-canary&var-region=All&var-host=All&orgId=37268&refresh=auto) `apps/sync-server`: syncs pg to browsers
-- `apps/sync-web-demo`: demo of sync server
+- `apps/sync-web-demo`: browser demo of sync
 - `packages/*`: shared config, utilities, schemas, etc.
 
 ### How it works

@@ -9,19 +9,19 @@
 	/** https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement*/
 	"placement": {
 		"mode": "smart"
-	},
+	}
 
 	/** https://developers.cloudflare.com/workers-ai/get-started/workers-wrangler/#2-connect-your-worker-to-workers-ai  */
-	"ai": {
-		"binding": "ai"
-	},
+	// "ai": {
+	// 	"binding": "ai"
+	// }
 
-	"vectorize": [
-		{
-			"binding": "vectorize",
-			"index_name": "vectorize"
-		}
-	]
+	// "vectorize": [
+	// 	{
+	// 		"binding": "vectorize",
+	// 		"index_name": "vectorize"
+	// 	}
+	// ]
 	// "kv_namespaces": [
 	// 	{
 	// 		"binding": "kv",

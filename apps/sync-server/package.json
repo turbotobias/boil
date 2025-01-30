@@ -12,7 +12,7 @@
 		"lint:fix-force": "biome check --write ."
 	},
 	"dependencies": {
-		"@rocicorp/zero": "^0.12.2025013000",
+		"@rocicorp/zero": "^0.12.2025013001",
 		"@boil/sync-zero": "workspace:*"
 	},
 	"devDependencies": {
