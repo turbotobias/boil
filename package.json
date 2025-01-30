@@ -23,7 +23,8 @@
 		"script:clean": "bun run ./scripts/reinstall.ts",
 		"script:purge-cloudflare-pages": "bun run scripts/purge-cloudflare-pages.ts",
 		"script:kill-ports": "bun run scripts/kill-ports.ts ",
-		"reinstall": "bun run script:clean && pnpm i -w && pnpm check:node-npm-versions && pnpm install"
+		"reinstall": "bun run script:clean && pnpm i -w && pnpm check:node-npm-versions && pnpm install",
+		"git:auto-pr-merge": "bun run scripts/git-auto-pr-merge.ts "
 	},
 	"devDependencies": {
 		"@types/semver": "^7.5.8",
