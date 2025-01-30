@@ -31,7 +31,7 @@ importers:
         version: 1.13.7(hono@4.6.19)
       '@rocicorp/zero':
         specifier: ^0.12.2025012900
-        version: 0.12.2025013000
+        version: 0.12.2025013001
       hono:
         specifier: ^4.6.19
         version: 4.6.19
@@ -67,8 +67,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/sync-zero
       '@rocicorp/zero':
-        specifier: ^0.12.2025013000
-        version: 0.12.2025013000
+        specifier: ^0.12.2025013001
+        version: 0.12.2025013001
     devDependencies:
       '@boil/config-typescript':
         specifier: workspace:*
@@ -86,8 +86,8 @@ importers:
         specifier: ^1.13.7
         version: 1.13.7(hono@4.6.19)
       '@rocicorp/zero':
-        specifier: ^0.12.2025013000
-        version: 0.12.2025013000
+        specifier: ^0.12.2025013001
+        version: 0.12.2025013001
       hono:
         specifier: ^4.6.19
         version: 4.6.19
@@ -164,8 +164,8 @@ importers:
   packages/sync-zero:
     dependencies:
       '@rocicorp/zero':
-        specifier: ^0.12.2025013000
-        version: 0.12.2025013000
+        specifier: ^0.12.2025013001
+        version: 0.12.2025013001
     devDependencies:
       '@boil/config-typescript':
         specifier: workspace:*
@@ -1071,8 +1071,8 @@ packages:
     resolution: {integrity: sha512-bm+VUdF4CnKVjUj/dSCmVu0hjcyXaF/nKkw2rNhZUjGeBOMRy/hh8z/32h311es4dxCVvcZ3+QHQHMxF2YG5Kw==}
     hasBin: true
 
-  '@rocicorp/zero@0.12.2025013000':
-    resolution: {integrity: sha512-Ff40zQafNfYYVBmjDO1WNDYJDjpZzfTUUd6aEdgYekczsXOjY6M8rrNKmd7J+gzSX4QFTC9uTBElinXSCdQowA==}
+  '@rocicorp/zero@0.12.2025013001':
+    resolution: {integrity: sha512-7anl74tpv6R/E4qcnte238zom8zHvuwLyeu3K9XI5zHzFjVNvNdIIoLmq1sSnEtuTCi+V1/EXHMG/zdgoEIf0g==}
     engines: {node: '>=20'}
     hasBin: true
 
@@ -3204,7 +3204,7 @@ snapshots:
       bindings: 1.5.0
       prebuild-install: 7.1.3
 
-  '@rocicorp/zero@0.12.2025013000':
+  '@rocicorp/zero@0.12.2025013001':
     dependencies:
       '@badrap/valita': 0.3.11
       '@databases/escape-identifier': 1.0.3
